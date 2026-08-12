@@ -42,925 +42,748 @@ export const ConversationEventTypes = {
 } as const;
 
 const MOCK_RESPONSES: Record<string, StaticContentMessageTextPayload> = {
-  default: {
-    text: "Welcome to Meraas. I can help you explore our residential projects across Dubai's most iconic communities — from beachfront living at La Mer to urban energy at City Walk and creative culture at d3. What interests you?",
-    options: [
-      { name: "Waterfront residences" },
-      { name: "Urban apartments" },
-      { name: "Luxury penthouses" },
-      { name: "Schedule a viewing" },
-    ],
-  },
-  "waterfront residences": {
-    text: "Here are our premier waterfront residences — from the beachfront elegance of Solaya at La Mer to the gulf views at Bluewaters Bay. Each offers direct water access and resort-style living.",
-    curation: [
+  "default": {
+    "text": "Welcome to Dubai Parks and Resorts! Ready for an adrenaline-filled day? I can recommend the best thrill rides, compare experiences and create a mock ticket booking. What would you like to explore?",
+    "options": [
       {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "SOLAYA-001",
-                name: "Solaya at La Mer",
-                Image: "https://meraas.com/sites/default/files/2026-04/Gallery-1.jpg",
-                price: 13800000,
-                currency: "AED",
-                productLabel: "Beachfront",
-                description: "4 Bed, Penthouse available",
-                longDescription: "A private collection of 234 residences where thoughtfully crafted spaces exude quiet elegance. Nine beachfront buildings maximise sea, city, and beach views with open-plan layouts. Gated residences with direct beach access, minutes from Dubai's centre.",
-                category1: "La Mer",
-                category3: "Meraas",
-                bedrooms: 4,
-                bathrooms: 5,
-                area: 5500,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/solaya",
-              },
-              {
-                sku: "BWB-001",
-                name: "Bluewaters Bay",
-                Image: "https://meraas.com/sites/default/files/2024-05/BWB%20-%20TG%20-%201.png",
-                price: 2850000,
-                currency: "AED",
-                productLabel: "Waterfront",
-                description: "1 to 4 Bed, Gulf Views",
-                longDescription: "Spectacular, light-flooded waterfront apartments rising from the Arabian Gulf. Contemporary open-plan layouts offer mesmerising views of Dubai city, Ain Dubai, and the yacht-dotted coastline. Elevated community garden, infinity pool with sea views, and tennis court.",
-                category1: "Bluewaters",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 3,
-                area: 1800,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/bluewaters-bay",
-              },
-              {
-                sku: "MJL-001",
-                name: "Madinat Jumeirah Living",
-                Image: "https://meraas.com/sites/default/files/2024-03/MJL%20-%20TG%20-%201.png",
-                price: 1530000,
-                currency: "AED",
-                productLabel: "Seafront",
-                description: "1 to 4 Bed, Burj Al Arab Views",
-                longDescription: "A seafront residential community featuring contemporary apartments with traditional Arabesque architectural influences, set against the backdrop of the Burj Al Arab. 190+ berth marina, beach access, and 5-star hospitality experiences.",
-                category1: "Madinat Jumeirah Living",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 2,
-                area: 1200,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/mjl-residences",
-              },
-            ],
-          },
-        ],
+        "name": "Show me the biggest thrills"
       },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Compare these properties" },
-      { name: "Solaya at La Mer" },
-      { name: "Schedule a viewing" },
-    ],
-  },
-  "urban apartments": {
-    text: "Explore our urban living collection — from the creative energy of Dubai Design District to the vibrant heart of City Walk. Modern apartments designed for contemporary lifestyles.",
-    curation: [
       {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "CWC-001",
-                name: "City Walk Crestlane",
-                Image: "https://meraas.com/sites/default/files/2025-06/Top%20Gallery%201.jpg",
-                price: 2700000,
-                currency: "AED",
-                productLabel: "New Launch",
-                description: "1 to 4 Bed, Waterfront Urban",
-                longDescription: "An exclusive collection of apartments and duplexes combining urban energy with waterfront living in central Dubai. Water is the essence — buildings surrounded by water features offering tranquil reflections. Sleek finishes, open layouts, and skyline views.",
-                category1: "City Walk",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 2,
-                area: 1400,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/city-walk-crestlane",
-              },
-              {
-                sku: "DQD3-001",
-                name: "Design Quarter at d3",
-                Image: "https://meraas.com/sites/default/files/2024-03/DQD3%20-%20TG%20-%201.png",
-                price: 1870000,
-                currency: "AED",
-                productLabel: "Creative Living",
-                description: "1 to 3 Bed, Canal Views",
-                longDescription: "Located in Dubai Design District, home to Dubai Design Week and Fashion Week. City views, modern design, and Dubai Water Canal access. Where home meets hustle meets the creative bustle.",
-                category1: "Dubai Design District",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 2,
-                area: 1100,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/designquarter-at-d3",
-              },
-              {
-                sku: "JRET-001",
-                name: "Jumeirah Residences Emirates Towers",
-                Image: "https://meraas.com/sites/default/files/2025-05/Meraas-Website-Images-880x860-1.jpg",
-                price: 3510000,
-                currency: "AED",
-                productLabel: "Iconic Skyline",
-                description: "1 to 4 Bed, Sky Pools",
-                longDescription: "A new architectural icon on Dubai's skyline. One- to four-bedroom apartments with no internal columns, creating open, fluid spaces. Sky terrace with infinity pool, private cinema, padel court, and Jumeirah Signature Services.",
-                category1: "Trade Centre 2",
-                category3: "Meraas",
-                bedrooms: 3,
-                bathrooms: 3,
-                area: 2200,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/jumeirah-emirates-tower",
-              },
-            ],
-          },
-        ],
+        "name": "Compare thrill experiences"
       },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Compare these properties" },
-      { name: "City Walk Crestlane" },
-      { name: "Schedule a viewing" },
-    ],
-  },
-  "luxury penthouses": {
-    text: "Discover our most exclusive residences — penthouses and ultra-premium apartments with panoramic views and bespoke finishes across Dubai's finest addresses.",
-    curation: [
       {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "SOLAYA-PH",
-                name: "Solaya Penthouse",
-                Image: "https://meraas.com/sites/default/files/2026-04/Gallery-2.jpg",
-                price: 13800000,
-                currency: "AED",
-                productLabel: "Penthouse",
-                description: "5 Bed, Beachfront Penthouse",
-                longDescription: "A cultered coastal penthouse at La Mer — 234 residences across nine beachfront buildings. Gated community with direct beach access, private cinema, spa, and curated gardens connecting to Beach Park. Minutes from J1 Beach with a Riviera-inspired lifestyle.",
-                category1: "La Mer",
-                category3: "Meraas",
-                bedrooms: 5,
-                bathrooms: 6,
-                area: 8500,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/solaya",
-              },
-              {
-                sku: "JRET-PH",
-                name: "Emirates Towers Penthouse",
-                Image: "https://meraas.com/sites/default/files/2025-05/Meraas-Website-Images-880x860-3.jpg",
-                price: 15000000,
-                currency: "AED",
-                productLabel: "Sky Living",
-                description: "4 Bed, Double Height, Sky Pool",
-                longDescription: "The pinnacle of Emirates Towers — a 4-bedroom penthouse with double-height living spaces and no internal columns. Private sky terrace with infinity pool, lounge seating, and curated greenery offering unmatched skyline views.",
-                category1: "Trade Centre 2",
-                category3: "Meraas",
-                bedrooms: 4,
-                bathrooms: 5,
-                area: 6800,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/jumeirah-emirates-tower",
-              },
-              {
-                sku: "CWC-DPX",
-                name: "City Walk Crestlane Duplex",
-                Image: "https://meraas.com/sites/default/files/2025-06/Top%20Gallery%202.jpg",
-                price: 8500000,
-                currency: "AED",
-                productLabel: "Duplex",
-                description: "4 Bed Duplex, Water Views",
-                longDescription: "A 4-bedroom duplex at City Walk Crestlane where urban energy meets waterfront calm. Panoramic water views, state-of-the-art fitness, infinity pools. 2 min walk from City Mall, 7 min from Jumeirah Beach.",
-                category1: "City Walk",
-                category3: "Meraas",
-                bedrooms: 4,
-                bathrooms: 4,
-                area: 4200,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/city-walk-crestlane",
-              },
-            ],
-          },
-        ],
+        "name": "Tell me about MOTIONGATE"
       },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Solaya at La Mer" },
-      { name: "Emirates Towers" },
-      { name: "Schedule a viewing" },
-    ],
+      {
+        "name": "Book a park visit"
+      }
+    ]
   },
-  "schedule a viewing": {
-    text: "I'd be happy to help you schedule a private viewing. Which project are you interested in visiting?",
-    options: [
-      { name: "City Walk Crestlane" },
-      { name: "Bluewaters Bay" },
-      { name: "Solaya at La Mer" },
-      { name: "Design Quarter at d3" },
+  "show me the biggest thrills": {
+    "text": "These are my top recommendations for thrill seekers — from cinematic flying and spinning coasters to a football-themed race for glory.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "MG-JW-001",
+                "name": "John Wick: Open Contract",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/john_wick_0.webp",
+                "productLabel": "High Thrill",
+                "description": "A thrilling 4D flying coaster encounter with John Wick.",
+                "longDescription": "Hurtle through an action-packed encounter with John Wick on this immersive 4D flying coaster. Choose whether to hunt him or help him as the story unfolds around you.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/attraction/john-wick-open-contract",
+                "category1": "Lionsgate",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "4D Flying Coaster",
+                "thrillLevel": "High"
+              },
+              {
+                "sku": "MG-NYSM-001",
+                "name": "Now You See Me: High Roller",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/now_you_see.webp",
+                "productLabel": "High Thrill",
+                "description": "A dizzying spin coaster inspired by the Four Horsemen.",
+                "longDescription": "Join the Horsemen on a high-speed heist aboard an exciting spin coaster where twists, turns and changing direction reveal the ride’s secrets.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/motiongatetm-dubai",
+                "category1": "Lionsgate",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "Spin Coaster",
+                "thrillLevel": "High"
+              },
+              {
+                "sku": "MG-DG-001",
+                "name": "Dragon Gliders",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/dragon_gliders.webp",
+                "productLabel": "Signature Ride",
+                "description": "Fly with Hiccup and Toothless above the Forbidden Islands.",
+                "longDescription": "A suspended roller coaster that carries you through the world of How to Train Your Dragon, from the Great Hall into caves high above Berk.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/motiongatetm-dubai",
+                "category1": "DreamWorks",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "Suspended Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
     ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Compare thrill experiences"
+      },
+      {
+        "name": "John Wick: Open Contract"
+      },
+      {
+        "name": "Book MOTIONGATE tickets"
+      }
+    ]
   },
-  "schedule viewing crestlane": {
-    text: "Great choice — City Walk Crestlane. Our sales team can arrange a private tour of the show apartments. What day works best for you?",
-    curation: [{ personalizations: [{ personalizationPointName: "Schedule_Appointment", data: [{ page_info: { project_name: "City Walk Crestlane", page_title: "Schedule a Viewing", hero_image_url: "https://meraas.com/sites/default/files/2025-06/Top%20Gallery%201.jpg", hero_label: "City Walk Crestlane" }, sales_center: { name: "Meraas & Nakheel Head Office, Building 5", address: { line_1: "King Salman Bin Abdul Aziz Al Saud Street", line_2: "Al Sufouh 2 - Dubai", region: "UAE" }, map_data: { directions_url: "https://www.google.com/maps/place/Meraas+and+Nakheel+Sales+Center/@25.1028056,55.1559444,715m" }, operating_hours: [{ days: "Monday – Thursday", hours: "8:00 AM to 5:00 PM", current_status: "Open" }, { days: "Friday", hours: "8:00 AM to 12:00 PM and 2:00 PM to 5:00 PM", current_status: "Open" }], contact_methods: { phone: "800 MERAAS (800-637227)", email: "sales@meraas.com", whatsapp: "+971 4 871 3735" }, visitor_notes: "International Contact Number: +971 4 871 3735. Property tours by appointment." } }] }] }],
-    template: [{ name: "ScheduleAppointment" }],
-    options: [
-      { name: "This Sunday" },
-      { name: "Monday" },
-      { name: "Tuesday" },
-      { name: "Another day" },
+  "tell me about motiongate": {
+    "text": "MOTIONGATE Dubai brings Hollywood and animated worlds to life. For thrill seekers, its standout experiences include John Wick: Open Contract, Now You See Me: High Roller and Dragon Gliders.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "MG-JW-001",
+                "name": "John Wick: Open Contract",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/john_wick_0.webp",
+                "productLabel": "High Thrill",
+                "description": "A thrilling 4D flying coaster encounter with John Wick.",
+                "longDescription": "Hurtle through an action-packed encounter with John Wick on this immersive 4D flying coaster. Choose whether to hunt him or help him as the story unfolds around you.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/attraction/john-wick-open-contract",
+                "category1": "Lionsgate",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "4D Flying Coaster",
+                "thrillLevel": "High"
+              },
+              {
+                "sku": "MG-NYSM-001",
+                "name": "Now You See Me: High Roller",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/now_you_see.webp",
+                "productLabel": "High Thrill",
+                "description": "A dizzying spin coaster inspired by the Four Horsemen.",
+                "longDescription": "Join the Horsemen on a high-speed heist aboard an exciting spin coaster where twists, turns and changing direction reveal the ride’s secrets.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/motiongatetm-dubai",
+                "category1": "Lionsgate",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "Spin Coaster",
+                "thrillLevel": "High"
+              },
+              {
+                "sku": "MG-DG-001",
+                "name": "Dragon Gliders",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/dragon_gliders.webp",
+                "productLabel": "Signature Ride",
+                "description": "Fly with Hiccup and Toothless above the Forbidden Islands.",
+                "longDescription": "A suspended roller coaster that carries you through the world of How to Train Your Dragon, from the Great Hall into caves high above Berk.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/motiongatetm-dubai",
+                "category1": "DreamWorks",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "Suspended Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
     ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Compare thrill experiences"
+      },
+      {
+        "name": "Book MOTIONGATE tickets"
+      }
+    ]
   },
-  "schedule viewing bluewaters": {
-    text: "Bluewaters Bay — an excellent choice. We can arrange a site visit to see the construction progress and show units. What day works best for you?",
-    curation: [{ personalizations: [{ personalizationPointName: "Schedule_Appointment", data: [{ page_info: { project_name: "Bluewaters Bay", page_title: "Schedule a Viewing", hero_image_url: "https://meraas.com/sites/default/files/2024-05/BWB%20-%20TG%20-%201.png", hero_label: "Bluewaters Bay" }, sales_center: { name: "Meraas & Nakheel Head Office, Building 5", address: { line_1: "King Salman Bin Abdul Aziz Al Saud Street", line_2: "Al Sufouh 2 - Dubai", region: "UAE" }, map_data: { directions_url: "https://www.google.com/maps/place/Meraas+and+Nakheel+Sales+Center/@25.1028056,55.1559444,715m" }, operating_hours: [{ days: "Monday – Thursday", hours: "8:00 AM to 5:00 PM", current_status: "Open" }, { days: "Friday", hours: "8:00 AM to 12:00 PM and 2:00 PM to 5:00 PM", current_status: "Open" }], contact_methods: { phone: "800 MERAAS (800-637227)", email: "sales@meraas.com", whatsapp: "+971 4 871 3735" }, visitor_notes: "International Contact Number: +971 4 871 3735. Property tours by appointment." } }] }] }],
-    template: [{ name: "ScheduleAppointment" }],
-    options: [
-      { name: "This Sunday" },
-      { name: "Monday" },
-      { name: "Tuesday" },
-      { name: "Another day" },
+  "real madrid world": {
+    "text": "Real Madrid World is the world’s first football theme park. Goal Coaster is the headline recommendation for visitors who want speed with a football theme.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "RMW-GC-001",
+                "name": "Goal Coaster",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2025-07/314x313%20-%20RMW-Thumbnail-HP.webp",
+                "productLabel": "Football Thrill",
+                "description": "Race through the Goal Archway in pursuit of the winner.",
+                "longDescription": "Compete to score the winner as you race rival teams, fly through the Goal Archway and celebrate victory in the world’s first football theme park.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/realmadridworld/attraction",
+                "category1": "Real Madrid World",
+                "category3": "Dubai Parks and Resorts",
+                "rideType": "Roller Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
     ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Book Real Madrid World tickets"
+      },
+      {
+        "name": "Compare thrill experiences"
+      }
+    ]
   },
-  "schedule viewing solaya": {
-    text: "Solaya at La Mer — our newest beachfront collection. We can arrange a private tour of the sales gallery and model units. What day works best for you?",
-    curation: [{ personalizations: [{ personalizationPointName: "Schedule_Appointment", data: [{ page_info: { project_name: "Solaya at La Mer", page_title: "Schedule a Viewing", hero_image_url: "https://meraas.com/sites/default/files/2026-04/Gallery-1.jpg", hero_label: "Solaya at La Mer" }, sales_center: { name: "Meraas & Nakheel Head Office, Building 5", address: { line_1: "King Salman Bin Abdul Aziz Al Saud Street", line_2: "Al Sufouh 2 - Dubai", region: "UAE" }, map_data: { directions_url: "https://www.google.com/maps/place/Meraas+and+Nakheel+Sales+Center/@25.1028056,55.1559444,715m" }, operating_hours: [{ days: "Monday – Thursday", hours: "8:00 AM to 5:00 PM", current_status: "Open" }, { days: "Friday", hours: "8:00 AM to 12:00 PM and 2:00 PM to 5:00 PM", current_status: "Open" }], contact_methods: { phone: "800 MERAAS (800-637227)", email: "sales@meraas.com", whatsapp: "+971 4 871 3735" }, visitor_notes: "International Contact Number: +971 4 871 3735. Property tours by appointment." } }] }] }],
-    template: [{ name: "ScheduleAppointment" }],
-    options: [
-      { name: "This Sunday" },
-      { name: "Monday" },
-      { name: "Tuesday" },
-      { name: "Another day" },
+  "john wick: open contract": {
+    "text": "Hurtle through an action-packed encounter with John Wick on this immersive 4D flying coaster. Choose whether to hunt him or help him as the story unfolds around you.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "MG-JW-001",
+                "name": "John Wick: Open Contract",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/john_wick_0.webp",
+                "productLabel": "High Thrill",
+                "description": "A thrilling 4D flying coaster encounter with John Wick.",
+                "longDescription": "Hurtle through an action-packed encounter with John Wick on this immersive 4D flying coaster. Choose whether to hunt him or help him as the story unfolds around you.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/attraction/john-wick-open-contract",
+                "category1": "Lionsgate",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "4D Flying Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
     ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Book MOTIONGATE tickets"
+      }
+    ]
   },
-  "schedule viewing d3": {
-    text: "Design Quarter at d3 — perfect for those who appreciate creative living. We can show you the show apartment and community amenities. What day works best for you?",
-    curation: [{ personalizations: [{ personalizationPointName: "Schedule_Appointment", data: [{ page_info: { project_name: "Design Quarter at d3", page_title: "Schedule a Viewing", hero_image_url: "https://meraas.com/sites/default/files/2024-03/DQD3%20-%20TG%20-%201.png", hero_label: "Design Quarter at d3" }, sales_center: { name: "Meraas & Nakheel Head Office, Building 5", address: { line_1: "King Salman Bin Abdul Aziz Al Saud Street", line_2: "Al Sufouh 2 - Dubai", region: "UAE" }, map_data: { directions_url: "https://www.google.com/maps/place/Meraas+and+Nakheel+Sales+Center/@25.1028056,55.1559444,715m" }, operating_hours: [{ days: "Monday – Thursday", hours: "8:00 AM to 5:00 PM", current_status: "Open" }, { days: "Friday", hours: "8:00 AM to 12:00 PM and 2:00 PM to 5:00 PM", current_status: "Open" }], contact_methods: { phone: "800 MERAAS (800-637227)", email: "sales@meraas.com", whatsapp: "+971 4 871 3735" }, visitor_notes: "International Contact Number: +971 4 871 3735. Property tours by appointment." } }] }] }],
-    template: [{ name: "ScheduleAppointment" }],
-    options: [
-      { name: "This Sunday" },
-      { name: "Monday" },
-      { name: "Tuesday" },
-      { name: "Another day" },
+  "now you see me: high roller": {
+    "text": "Join the Horsemen on a high-speed heist aboard an exciting spin coaster where twists, turns and changing direction reveal the ride’s secrets.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "MG-NYSM-001",
+                "name": "Now You See Me: High Roller",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/now_you_see.webp",
+                "productLabel": "High Thrill",
+                "description": "A dizzying spin coaster inspired by the Four Horsemen.",
+                "longDescription": "Join the Horsemen on a high-speed heist aboard an exciting spin coaster where twists, turns and changing direction reveal the ride’s secrets.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/motiongatetm-dubai",
+                "category1": "Lionsgate",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "Spin Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
     ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Book MOTIONGATE tickets"
+      }
+    ]
+  },
+  "dragon gliders": {
+    "text": "A suspended roller coaster that carries you through the world of How to Train Your Dragon, from the Great Hall into caves high above Berk.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "MG-DG-001",
+                "name": "Dragon Gliders",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/dragon_gliders.webp",
+                "productLabel": "Signature Ride",
+                "description": "Fly with Hiccup and Toothless above the Forbidden Islands.",
+                "longDescription": "A suspended roller coaster that carries you through the world of How to Train Your Dragon, from the Great Hall into caves high above Berk.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/motiongatetm-dubai",
+                "category1": "DreamWorks",
+                "category3": "MOTIONGATE Dubai",
+                "rideType": "Suspended Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Book MOTIONGATE tickets"
+      }
+    ]
+  },
+  "goal coaster": {
+    "text": "Compete to score the winner as you race rival teams, fly through the Goal Archway and celebrate victory in the world’s first football theme park.",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "DPR_Thrill_Recommendations",
+            "data": [
+              {
+                "sku": "RMW-GC-001",
+                "name": "Goal Coaster",
+                "Image": "https://www.dubaiparksandresorts.com/sites/default/files/2025-07/314x313%20-%20RMW-Thumbnail-HP.webp",
+                "productLabel": "Football Thrill",
+                "description": "Race through the Goal Archway in pursuit of the winner.",
+                "longDescription": "Compete to score the winner as you race rival teams, fly through the Goal Archway and celebrate victory in the world’s first football theme park.",
+                "productUrl": "https://www.dubaiparksandresorts.com/en/realmadridworld/attraction",
+                "category1": "Real Madrid World",
+                "category3": "Dubai Parks and Resorts",
+                "rideType": "Roller Coaster",
+                "thrillLevel": "High"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "template": [
+      {
+        "name": "Recs"
+      }
+    ],
+    "options": [
+      {
+        "name": "Book Real Madrid World tickets"
+      }
+    ]
+  },
+  "compare thrill experiences": {
+    "text": "Here is a quick comparison of four standout experiences for thrill seekers.",
+    "curation": {
+      "products": [
+        {
+          "id": "MG-JW-001",
+          "image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/john_wick_0.webp",
+          "name": "John Wick: Open Contract",
+          "price": "MOTIONGATE",
+          "rating": 4.9,
+          "features": [
+            {
+              "name": "Experience",
+              "value": "4D flying coaster"
+            },
+            {
+              "name": "Theme",
+              "value": "John Wick"
+            },
+            {
+              "name": "Thrill",
+              "value": "High"
+            },
+            {
+              "name": "Best for",
+              "value": "Action fans"
+            }
+          ]
+        },
+        {
+          "id": "MG-NYSM-001",
+          "image": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/now_you_see.webp",
+          "name": "Now You See Me: High Roller",
+          "price": "MOTIONGATE",
+          "rating": 4.8,
+          "features": [
+            {
+              "name": "Experience",
+              "value": "Spin coaster"
+            },
+            {
+              "name": "Theme",
+              "value": "Now You See Me"
+            },
+            {
+              "name": "Thrill",
+              "value": "High"
+            },
+            {
+              "name": "Best for",
+              "value": "Twists and spins"
+            }
+          ]
+        },
+        {
+          "id": "RMW-GC-001",
+          "image": "https://www.dubaiparksandresorts.com/sites/default/files/2025-07/314x313%20-%20RMW-Thumbnail-HP.webp",
+          "name": "Goal Coaster",
+          "price": "Real Madrid World",
+          "rating": 4.7,
+          "features": [
+            {
+              "name": "Experience",
+              "value": "Roller coaster"
+            },
+            {
+              "name": "Theme",
+              "value": "Real Madrid"
+            },
+            {
+              "name": "Thrill",
+              "value": "High"
+            },
+            {
+              "name": "Best for",
+              "value": "Football fans"
+            }
+          ]
+        }
+      ]
+    },
+    "template": [
+      {
+        "name": "Comparison"
+      }
+    ]
+  },
+  "book a park visit": {
+    "text": "Which park would you like to include in this mock booking?",
+    "options": [
+      {
+        "name": "MOTIONGATE Dubai"
+      },
+      {
+        "name": "Real Madrid World"
+      }
+    ]
+  },
+  "schedule visit motiongate": {
+    "text": "Excellent choice. Which day would you like to visit MOTIONGATE Dubai?",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "Schedule_Appointment",
+            "data": [
+              {
+                "page_info": {
+                  "project_name": "MOTIONGATE Dubai",
+                  "page_title": "Choose Your Visit Date",
+                  "hero_image_url": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/john_wick_0.webp",
+                  "hero_label": "MOTIONGATE Dubai"
+                },
+                "sales_center": {
+                  "name": "Dubai Parks and Resorts",
+                  "address": {
+                    "line_1": "Sheikh Zayed Road (E11), Exit 25",
+                    "line_2": "Jebel Ali, Dubai",
+                    "region": "UAE"
+                  },
+                  "map_data": {
+                    "directions_url": "https://www.google.com/maps/search/?api=1&query=Dubai+Parks+and+Resorts"
+                  },
+                  "operating_hours": [
+                    {
+                      "days": "Selected visit",
+                      "hours": "Mock reservation",
+                      "current_status": "Open"
+                    }
+                  ],
+                  "contact_methods": {
+                    "phone": "800 AMAZING (2629 464)"
+                  },
+                  "visitor_notes": "Demo only — no payment has been taken and no real ticket has been issued."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "template": [
+      {
+        "name": "ScheduleAppointment"
+      }
+    ],
+    "options": [
+      {
+        "name": "This Saturday"
+      },
+      {
+        "name": "This Sunday"
+      },
+      {
+        "name": "Another day"
+      }
+    ]
+  },
+  "schedule visit real madrid": {
+    "text": "Great choice. Which day would you like to visit Real Madrid World?",
+    "curation": [
+      {
+        "personalizations": [
+          {
+            "personalizationPointName": "Schedule_Appointment",
+            "data": [
+              {
+                "page_info": {
+                  "project_name": "Real Madrid World",
+                  "page_title": "Choose Your Visit Date",
+                  "hero_image_url": "https://www.dubaiparksandresorts.com/sites/default/files/2025-07/314x313%20-%20RMW-Thumbnail-HP.webp",
+                  "hero_label": "Real Madrid World"
+                },
+                "sales_center": {
+                  "name": "Dubai Parks and Resorts",
+                  "address": {
+                    "line_1": "Sheikh Zayed Road (E11), Exit 25",
+                    "line_2": "Jebel Ali, Dubai",
+                    "region": "UAE"
+                  },
+                  "map_data": {
+                    "directions_url": "https://www.google.com/maps/search/?api=1&query=Dubai+Parks+and+Resorts"
+                  },
+                  "operating_hours": [
+                    {
+                      "days": "Selected visit",
+                      "hours": "Mock reservation",
+                      "current_status": "Open"
+                    }
+                  ],
+                  "contact_methods": {
+                    "phone": "800 AMAZING (2629 464)"
+                  },
+                  "visitor_notes": "Demo only — no payment has been taken and no real ticket has been issued."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "template": [
+      {
+        "name": "ScheduleAppointment"
+      }
+    ],
+    "options": [
+      {
+        "name": "This Saturday"
+      },
+      {
+        "name": "This Sunday"
+      },
+      {
+        "name": "Another day"
+      }
+    ]
+  },
+  "this saturday": {
+    "text": "How many thrill seekers are joining?",
+    "options": [
+      {
+        "name": "1 guest"
+      },
+      {
+        "name": "2 guests"
+      },
+      {
+        "name": "3 guests"
+      },
+      {
+        "name": "4 guests"
+      }
+    ]
   },
   "this sunday": {
-    text: "Sunday works well. We have availability at these times — which would you prefer?",
-    options: [
-      { name: "10:00 AM" },
-      { name: "12:00 PM" },
-      { name: "2:00 PM" },
-      { name: "4:00 PM" },
-    ],
-  },
-  "monday": {
-    text: "Monday is available. What time would suit you best?",
-    options: [
-      { name: "10:00 AM" },
-      { name: "12:00 PM" },
-      { name: "2:00 PM" },
-      { name: "4:00 PM" },
-    ],
-  },
-  "tuesday": {
-    text: "Tuesday works. Here are the available slots — which do you prefer?",
-    options: [
-      { name: "10:00 AM" },
-      { name: "12:00 PM" },
-      { name: "2:00 PM" },
-      { name: "4:00 PM" },
-    ],
+    "text": "How many thrill seekers are joining?",
+    "options": [
+      {
+        "name": "1 guest"
+      },
+      {
+        "name": "2 guests"
+      },
+      {
+        "name": "3 guests"
+      },
+      {
+        "name": "4 guests"
+      }
+    ]
   },
   "another day": {
-    text: "No problem. We're open Monday to Thursday 8 AM–5 PM and Friday 8 AM–12 PM & 2–5 PM. Just let me know which day and I'll check availability.",
-    options: [
-      { name: "Wednesday" },
-      { name: "Thursday" },
-    ],
+    "text": "For this mock, let’s continue with the next available visit day.",
+    "options": [
+      {
+        "name": "This Saturday"
+      },
+      {
+        "name": "This Sunday"
+      }
+    ]
   },
-  "wednesday": {
-    text: "Wednesday is available. What time works for you?",
-    options: [
-      { name: "10:00 AM" },
-      { name: "12:00 PM" },
-      { name: "2:00 PM" },
-      { name: "4:00 PM" },
-    ],
+  "1 guest": {
+    "text": "Choose your mock ticket option.",
+    "options": [
+      {
+        "name": "One Park Pass"
+      },
+      {
+        "name": "Two Park Pass"
+      }
+    ]
   },
-  "thursday": {
-    text: "Thursday works. What time would you prefer?",
-    options: [
-      { name: "10:00 AM" },
-      { name: "12:00 PM" },
-      { name: "2:00 PM" },
-      { name: "4:00 PM" },
-    ],
+  "2 guests": {
+    "text": "Choose your mock ticket option for two guests.",
+    "options": [
+      {
+        "name": "One Park Pass"
+      },
+      {
+        "name": "Two Park Pass"
+      }
+    ]
   },
-  "10:00 am": {
-    text: "10:00 AM — noted. To confirm your booking, could you share your preferred contact method? We'll send a confirmation with directions to the sales centre.",
-    options: [
-      { name: "I'll share my email" },
-      { name: "Call me instead" },
-      { name: "WhatsApp me" },
-    ],
+  "3 guests": {
+    "text": "Choose your mock ticket option for three guests.",
+    "options": [
+      {
+        "name": "One Park Pass"
+      },
+      {
+        "name": "Two Park Pass"
+      }
+    ]
   },
-  "12:00 pm": {
-    text: "12:00 PM — perfect. To confirm your booking, could you share your preferred contact method? We'll send a confirmation with directions to the sales centre.",
-    options: [
-      { name: "I'll share my email" },
-      { name: "Call me instead" },
-      { name: "WhatsApp me" },
-    ],
+  "4 guests": {
+    "text": "Choose your mock ticket option for four guests.",
+    "options": [
+      {
+        "name": "One Park Pass"
+      },
+      {
+        "name": "Two Park Pass"
+      }
+    ]
   },
-  "2:00 pm": {
-    text: "2:00 PM — great. To confirm your booking, could you share your preferred contact method? We'll send a confirmation with directions.",
-    options: [
-      { name: "I'll share my email" },
-      { name: "Call me instead" },
-      { name: "WhatsApp me" },
-    ],
+  "one park pass": {
+    "text": "Great. Please type your email address to generate the mock booking confirmation."
   },
-  "4:00 pm": {
-    text: "4:00 PM — noted. To confirm your booking, could you share your preferred contact method? We'll send a confirmation with directions.",
-    options: [
-      { name: "I'll share my email" },
-      { name: "Call me instead" },
-      { name: "WhatsApp me" },
-    ],
-  },
-  "i'll share my email": {
-    text: "Please type your email address and I'll send the confirmation details.",
-  },
-  "call me instead": {
-    text: "Of course. Please share your phone number and our team will call you to confirm.",
-  },
-  "whatsapp me": {
-    text: "Perfect. Please share your WhatsApp number and we'll send the confirmation there.",
+  "two park pass": {
+    "text": "Great. Please type your email address to generate the mock booking confirmation."
   },
   "confirm viewing": {
-    text: "Your viewing is confirmed! Here are the details for your visit.",
-    curation: [
+    "text": "Your mock park visit is confirmed! Here are the demonstration details.",
+    "curation": [
       {
-        personalizations: [
+        "personalizations": [
           {
-            personalizationPointName: "Schedule_Appointment",
-            data: [
+            "personalizationPointName": "Schedule_Appointment",
+            "data": [
               {
-                page_info: {
-                  project_name: "Meraas",
-                  page_title: "Viewing Confirmed",
-                  hero_image_url: "https://meraas.com/sites/default/files/2026-04/Gallery-3.jpg",
-                  hero_label: "See You Soon",
+                "page_info": {
+                  "project_name": "Dubai Parks and Resorts",
+                  "page_title": "Mock Booking Confirmed",
+                  "hero_image_url": "https://www.dubaiparksandresorts.com/sites/default/files/2024-03/john_wick_0.webp",
+                  "hero_label": "Dubai Parks and Resorts"
                 },
-                sales_center: {
-                  name: "Meraas & Nakheel Head Office, Building 5",
-                  address: {
-                    line_1: "King Salman Bin Abdul Aziz Al Saud Street",
-                    line_2: "Al Sufouh 2 - Dubai",
-                    region: "UAE",
+                "sales_center": {
+                  "name": "Dubai Parks and Resorts",
+                  "address": {
+                    "line_1": "Sheikh Zayed Road (E11), Exit 25",
+                    "line_2": "Jebel Ali, Dubai",
+                    "region": "UAE"
                   },
-                  map_data: {
-                    directions_url: "https://www.google.com/maps/place/Meraas+and+Nakheel+Sales+Center/@25.1028056,55.1559444,715m",
-                    iframe_embed_url: "",
+                  "map_data": {
+                    "directions_url": "https://www.google.com/maps/search/?api=1&query=Dubai+Parks+and+Resorts"
                   },
-                  operating_hours: [
-                    { days: "Monday – Thursday", hours: "8:00 AM to 5:00 PM", current_status: "Open" },
-                    { days: "Friday", hours: "8:00 AM to 12:00 PM and 2:00 PM to 5:00 PM", current_status: "Open" },
+                  "operating_hours": [
+                    {
+                      "days": "Selected visit",
+                      "hours": "Mock reservation",
+                      "current_status": "Open"
+                    }
                   ],
-                  contact_methods: {
-                    phone: "800 MERAAS (800-637227)",
-                    phone_link: "tel:800637227",
-                    email: "sales@meraas.com",
-                    email_link: "mailto:sales@meraas.com",
-                    whatsapp: "+971 4 871 3735",
+                  "contact_methods": {
+                    "phone": "800 AMAZING (2629 464)"
                   },
-                  visitor_notes: "International Contact Number: +971 4 871 3735. Property tours by appointment.",
-                },
-              },
-            ],
-          },
-        ],
-      },
+                  "visitor_notes": "Demo only — no payment has been taken and no real ticket has been issued."
+                }
+              }
+            ]
+          }
+        ]
+      }
     ],
-    template: [{ name: "ScheduleAppointment" }],
-  },
-  "tell me about payment plans": {
-    text: "Meraas offers flexible payment plans across our developments. City Walk Crestlane starts at AED 2.7M, Design Quarter at d3 from AED 1.87M, and Bluewaters Bay from AED 2.85M. Most projects offer construction-linked installment plans — download the detailed PDF from each project page for full terms.",
-    options: [
-      { name: "Waterfront residences" },
-      { name: "Urban apartments" },
-      { name: "Schedule a viewing" },
-    ],
-  },
-  "compare these properties": {
-    text: "Here's a comparison of our featured available residences to help you find the right fit.",
-    curation: {
-      products: [
-        {
-          id: "CWC-001",
-          image: "https://meraas.com/sites/default/files/2025-06/Top%20Gallery%201.jpg",
-          name: "City Walk Crestlane",
-          price: "From AED 2.70M",
-          rating: 4.7,
-          features: [
-            { name: "Location", value: "City Walk" },
-            { name: "Type", value: "1-4 Bed Apartments" },
-            { name: "Proximity", value: "2 min to City Mall" },
-            { name: "Highlight", value: "Waterfront Urban" },
-          ],
-        },
-        {
-          id: "BWB-001",
-          image: "https://meraas.com/sites/default/files/2024-05/BWB%20-%20TG%20-%201.png",
-          name: "Bluewaters Bay",
-          price: "From AED 2.85M",
-          rating: 4.6,
-          features: [
-            { name: "Location", value: "Bluewaters Island" },
-            { name: "Type", value: "1-4 Bed Waterfront" },
-            { name: "Proximity", value: "5 min walk to Ain Dubai" },
-            { name: "Highlight", value: "Arabian Gulf Views" },
-          ],
-        },
-        {
-          id: "DQD3-001",
-          image: "https://meraas.com/sites/default/files/2024-03/DQD3%20-%20TG%20-%201.png",
-          name: "Design Quarter at d3",
-          price: "From AED 1.87M",
-          rating: 4.5,
-          features: [
-            { name: "Location", value: "Dubai Design District" },
-            { name: "Type", value: "1-3 Bed Apartments" },
-            { name: "Proximity", value: "10 min to Downtown" },
-            { name: "Highlight", value: "Canal & Creative Hub" },
-          ],
-        },
-      ],
-    },
-    template: [{ name: "Comparison" }],
-  },
-  "solaya at la mer": {
-    text: "Solaya — a cultured coastal community by Meraas & Brookfield Properties. 234 residences across nine beachfront buildings at La Mer, Jumeirah 1. Direct beach access, surrounded by renowned hotels, beach clubs, and restaurants.",
-    curation: [
+    "template": [
       {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "SOLAYA-2BR",
-                name: "Solaya 2 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2026-04/Gallery-1.jpg",
-                price: 13800000,
-                currency: "AED",
-                productLabel: "Beachfront",
-                description: "2 Bed, Sea Views",
-                category1: "La Mer",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 3,
-                area: 2800,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/solaya",
-              },
-              {
-                sku: "SOLAYA-4BR",
-                name: "Solaya 4 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2026-04/Gallery-2.jpg",
-                price: 22000000,
-                currency: "AED",
-                productLabel: "Premium",
-                description: "4 Bed, Beach Access",
-                category1: "La Mer",
-                category3: "Meraas",
-                bedrooms: 4,
-                bathrooms: 5,
-                area: 5500,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/solaya",
-              },
-              {
-                sku: "SOLAYA-PH",
-                name: "Solaya Penthouse",
-                Image: "https://meraas.com/sites/default/files/2026-04/Gallery-3.jpg",
-                price: 35000000,
-                currency: "AED",
-                productLabel: "Penthouse",
-                description: "5 Bed, Full Floor",
-                category1: "La Mer",
-                category3: "Meraas",
-                bedrooms: 5,
-                bathrooms: 6,
-                area: 8500,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/solaya",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Schedule a viewing" },
-      { name: "Compare these properties" },
-    ],
+        "name": "ScheduleAppointment"
+      }
+    ]
   },
-  "bluewaters bay": {
-    text: "Bluewaters Bay — spectacular waterfront apartments rising from the Arabian Gulf. Contemporary 1 to 4-bedroom apartments with views of Ain Dubai, the city skyline, and the yacht-dotted coastline. Construction at 23% with Tower 1 at Level 27.",
-    curation: [
+  "tell me about ticket prices": {
+    "text": "Ticket prices and promotions may change. This demonstration intentionally avoids quoting a live price. The official Buy Tickets page should be used for real availability and pricing.",
+    "options": [
       {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "BWB-1BR",
-                name: "Bluewaters Bay 1 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2024-05/BWB%20-%20TG%20-%201.png",
-                price: 2850000,
-                currency: "AED",
-                productLabel: "Gulf Views",
-                description: "1 Bed, Ain Dubai Views",
-                category1: "Bluewaters",
-                category3: "Meraas",
-                bedrooms: 1,
-                bathrooms: 2,
-                area: 900,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/bluewaters-bay",
-              },
-              {
-                sku: "BWB-2BR",
-                name: "Bluewaters Bay 2 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2024-05/BWB%20-%20TG%20%E2%80%93%202.png",
-                price: 4200000,
-                currency: "AED",
-                productLabel: "Sea View",
-                description: "2 Bed, Infinity Pool",
-                category1: "Bluewaters",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 3,
-                area: 1400,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/bluewaters-bay",
-              },
-              {
-                sku: "BWB-3BR",
-                name: "Bluewaters Bay 3 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2024-05/BWB%20-%20TG%20%E2%80%93%203.png",
-                price: 6500000,
-                currency: "AED",
-                productLabel: "Premium",
-                description: "3 Bed, Panoramic Views",
-                category1: "Bluewaters",
-                category3: "Meraas",
-                bedrooms: 3,
-                bathrooms: 4,
-                area: 2100,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/bluewaters-bay",
-              },
-            ],
-          },
-        ],
+        "name": "Book a park visit"
       },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Schedule a viewing" },
-      { name: "Tell me about payment plans" },
-    ],
-  },
-  "madinat jumeirah living": {
-    text: "Madinat Jumeirah Living — Dubai's most prestigious seafront neighbourhood. Contemporary apartments with Arabesque influences, set against the Burj Al Arab backdrop. 190+ berth marina, beach access, and 5-star hospitality.",
-    curation: [
       {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "MJL-1BR",
-                name: "MJL Residences 1 Bed",
-                Image: "https://meraas.com/sites/default/files/2024-03/MJL%20-%20TG%20-%201.png",
-                price: 1530000,
-                currency: "AED",
-                productLabel: "From 1.53M",
-                description: "1 Bed, Burj Al Arab View",
-                category1: "Madinat Jumeirah Living",
-                category3: "Meraas",
-                bedrooms: 1,
-                bathrooms: 1,
-                area: 750,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/mjl-residences",
-              },
-              {
-                sku: "MJL-2BR",
-                name: "MJL Residences 2 Bed",
-                Image: "https://meraas.com/sites/default/files/2024-03/MJL%20-%20TG%20%E2%80%93%202.png",
-                price: 2500000,
-                currency: "AED",
-                productLabel: "Marina View",
-                description: "2 Bed, Marina & Beach",
-                category1: "Madinat Jumeirah Living",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 2,
-                area: 1200,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/mjl-residences",
-              },
-              {
-                sku: "MJL-3BR",
-                name: "MJL Residences 3 Bed",
-                Image: "https://meraas.com/sites/default/files/2024-03/MJL%20-%20TG%20%E2%80%93%203.png",
-                price: 3800000,
-                currency: "AED",
-                productLabel: "Premium",
-                description: "3 Bed, Seafront Living",
-                category1: "Madinat Jumeirah Living",
-                category3: "Meraas",
-                bedrooms: 3,
-                bathrooms: 3,
-                area: 1800,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/mjl-residences",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Schedule a viewing" },
-      { name: "Compare these properties" },
-    ],
-  },
-  "city walk crestlane": {
-    text: "City Walk Crestlane — an exclusive collection of apartments and duplexes combining urban energy with waterfront living. Water isn't just a feature — it's the essence. 2 min walk to City Mall, 7 min from Jumeirah Beach.",
-    curation: [
-      {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "CWC-1BR",
-                name: "Crestlane 1 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2025-06/Top%20Gallery%201.jpg",
-                price: 2700000,
-                currency: "AED",
-                productLabel: "From 2.7M",
-                description: "1 Bed, Water Features",
-                category1: "City Walk",
-                category3: "Meraas",
-                bedrooms: 1,
-                bathrooms: 1,
-                area: 850,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/city-walk-crestlane",
-              },
-              {
-                sku: "CWC-2BR",
-                name: "Crestlane 2 Bedroom",
-                Image: "https://meraas.com/sites/default/files/2025-06/Top%20Gallery%202.jpg",
-                price: 4200000,
-                currency: "AED",
-                productLabel: "Skyline Views",
-                description: "2 Bed, Open Layout",
-                category1: "City Walk",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 2,
-                area: 1400,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/city-walk-crestlane",
-              },
-              {
-                sku: "CWC-DPX",
-                name: "Crestlane 4 Bed Duplex",
-                Image: "https://meraas.com/sites/default/files/2025-11/880x860.jpg",
-                price: 8500000,
-                currency: "AED",
-                productLabel: "Duplex",
-                description: "4 Bed Duplex, Premium",
-                category1: "City Walk",
-                category3: "Meraas",
-                bedrooms: 4,
-                bathrooms: 4,
-                area: 3600,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/city-walk-crestlane",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Schedule a viewing" },
-      { name: "Tell me about payment plans" },
-    ],
-  },
-  "design quarter at d3": {
-    text: "Design Quarter at d3 — where home meets hustle meets the creative bustle. Located in Dubai Design District alongside Dubai Design Week, Fashion Week, and Sole DXB. City views, canal access, and modern community living from AED 1.87M.",
-    curation: [
-      {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "DQD3-1BR",
-                name: "Design Quarter 1 Bed",
-                Image: "https://meraas.com/sites/default/files/2024-03/DQD3%20-%20TG%20-%201.png",
-                price: 1870000,
-                currency: "AED",
-                productLabel: "From 1.87M",
-                description: "1 Bed, Canal View",
-                category1: "Dubai Design District",
-                category3: "Meraas",
-                bedrooms: 1,
-                bathrooms: 1,
-                area: 750,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/designquarter-at-d3",
-              },
-              {
-                sku: "DQD3-2BR",
-                name: "Design Quarter 2 Bed",
-                Image: "https://meraas.com/sites/default/files/2024-03/DQD3%20-%20TG%20-%202.png",
-                price: 2600000,
-                currency: "AED",
-                productLabel: "City View",
-                description: "2 Bed, Creative Hub",
-                category1: "Dubai Design District",
-                category3: "Meraas",
-                bedrooms: 2,
-                bathrooms: 2,
-                area: 1100,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/designquarter-at-d3",
-              },
-              {
-                sku: "DQD3-3BR",
-                name: "Design Quarter 3 Bed",
-                Image: "https://meraas.com/sites/default/files/2024-03/DQD3%20-%20TG%20-%203.png",
-                price: 3400000,
-                currency: "AED",
-                productLabel: "Premium",
-                description: "3 Bed, Panoramic Views",
-                category1: "Dubai Design District",
-                category3: "Meraas",
-                bedrooms: 3,
-                bathrooms: 3,
-                area: 1600,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/designquarter-at-d3",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Schedule a viewing" },
-      { name: "Compare these properties" },
-    ],
-  },
-  "emirates towers": {
-    text: "Jumeirah Residences Emirates Towers — a new architectural icon. Apartments with no internal columns creating open, fluid spaces. Sky terrace with infinity pool, private cinema, padel court, and Jumeirah Signature Services. From AED 3.51M.",
-    curation: [
-      {
-        personalizations: [
-          {
-            personalizationPointName: "Meraas_Property_Recommendations",
-            data: [
-              {
-                sku: "JRET-1BR",
-                name: "Emirates Towers 1 Bed",
-                Image: "https://meraas.com/sites/default/files/2025-05/Meraas-Website-Images-880x860-1.jpg",
-                price: 3510000,
-                currency: "AED",
-                productLabel: "From 3.51M",
-                description: "1 Bed, Skyline Views",
-                category1: "Trade Centre 2",
-                category3: "Meraas",
-                bedrooms: 1,
-                bathrooms: 1,
-                area: 1000,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/jumeirah-emirates-tower",
-              },
-              {
-                sku: "JRET-3BR",
-                name: "Emirates Towers 3 Bed",
-                Image: "https://meraas.com/sites/default/files/2025-05/Meraas-Website-Images-880x860-2.jpg",
-                price: 8200000,
-                currency: "AED",
-                productLabel: "Double Height",
-                description: "3 Bed, Double Height Living",
-                category1: "Trade Centre 2",
-                category3: "Meraas",
-                bedrooms: 3,
-                bathrooms: 3,
-                area: 2800,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/jumeirah-emirates-tower",
-              },
-              {
-                sku: "JRET-4BR",
-                name: "Emirates Towers 4 Bed",
-                Image: "https://meraas.com/sites/default/files/2025-05/Meraas-Website-Images-880x860-3.jpg",
-                price: 15000000,
-                currency: "AED",
-                productLabel: "Sky Pool",
-                description: "4 Bed, Private Sky Terrace",
-                category1: "Trade Centre 2",
-                category3: "Meraas",
-                bedrooms: 4,
-                bathrooms: 5,
-                area: 4500,
-                areaUnit: "sqft",
-                productUrl: "https://meraas.com/en/project/jumeirah-emirates-tower",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    template: [{ name: "Recs" }],
-    options: [
-      { name: "Schedule a viewing" },
-      { name: "Tell me about payment plans" },
-    ],
-  },
+        "name": "Show me the biggest thrills"
+      }
+    ]
+  }
 };
 
 const ALIASES: Record<string, string> = {
-  'waterfront': 'waterfront residences',
-  'beach': 'waterfront residences',
-  'beachfront': 'waterfront residences',
-  'sea view': 'waterfront residences',
-  'ocean': 'waterfront residences',
-  'apartment': 'urban apartments',
-  'apartments': 'urban apartments',
-  'urban': 'urban apartments',
-  'penthouse': 'luxury penthouses',
-  'penthouses': 'luxury penthouses',
-  'luxury': 'luxury penthouses',
-  'solaya': 'solaya at la mer',
-  'la mer': 'solaya at la mer',
-  'bluewaters': 'bluewaters bay',
-  'ain dubai': 'bluewaters bay',
-  'madinat': 'madinat jumeirah living',
-  'mjl': 'madinat jumeirah living',
-  'jumeirah living': 'madinat jumeirah living',
-  'city walk': 'city walk crestlane',
-  'crestlane': 'city walk crestlane',
-  'design quarter': 'design quarter at d3',
-  'd3': 'design quarter at d3',
-  'design district': 'design quarter at d3',
-  'emirates towers': 'emirates towers',
-  'emirates tower': 'emirates towers',
-  'trade centre': 'emirates towers',
+  "thrill": "show me the biggest thrills",
+  "thrills": "show me the biggest thrills",
+  "adrenaline": "show me the biggest thrills",
+  "roller coaster": "show me the biggest thrills",
+  "rides": "show me the biggest thrills",
+  "motiongate": "tell me about motiongate",
+  "motion gate": "tell me about motiongate",
+  "real madrid": "real madrid world",
+  "football": "real madrid world",
+  "john wick": "john wick: open contract",
+  "high roller": "now you see me: high roller",
+  "now you see me": "now you see me: high roller",
+  "dragon": "dragon gliders",
+  "goal coaster": "goal coaster"
 };
 
-// Action intents take priority over project names
 const INTENT_KEYWORDS = ['compare', 'comparison', 'versus', 'vs'];
-const SCHEDULE_KEYWORDS = ['viewing', 'visit', 'appointment', 'book', 'schedule'];
-const PAYMENT_KEYWORDS = ['payment', 'plans', 'installment', 'price', 'cost'];
+const SCHEDULE_KEYWORDS = ['ticket', 'tickets', 'visit', 'book', 'booking', 'reserve'];
+const PAYMENT_KEYWORDS = ['price', 'prices', 'cost', 'how much'];
 
-// Map project keywords to their schedule-specific response key
 const SCHEDULE_PROJECT_MAP: Record<string, string> = {
-  'city walk': 'schedule viewing crestlane',
-  'crestlane': 'schedule viewing crestlane',
-  'bluewaters': 'schedule viewing bluewaters',
-  'ain dubai': 'schedule viewing bluewaters',
-  'solaya': 'schedule viewing solaya',
-  'la mer': 'schedule viewing solaya',
-  'd3': 'schedule viewing d3',
-  'design quarter': 'schedule viewing d3',
-  'design district': 'schedule viewing d3',
+  "motiongate": "schedule visit motiongate",
+  "motion gate": "schedule visit motiongate",
+  "john wick": "schedule visit motiongate",
+  "real madrid": "schedule visit real madrid",
+  "football": "schedule visit real madrid"
 };
 
 // Detect if user typed something that looks like an email or phone (triggers confirmation)
