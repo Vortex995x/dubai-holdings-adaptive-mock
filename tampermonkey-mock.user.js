@@ -1,8 +1,10 @@
 // ==UserScript==
-// @name         Dubai Holdings - Adaptive Web Agent (MOCK)
-// @namespace    https://dubaiholding.com/
-// @version      1.0
-// @description  Injects mock Adaptive Web Agent chat widget onto Dubai Holdings sites (no backend required)
+// @name         Dubai Parks and Resorts - Adaptive Web Agent (MOCK)
+// @namespace    https://www.dubaiparksandresorts.com/
+// @version      2.0
+// @description  Injects a mock Adaptive Web Agent onto Dubai Parks and Resorts (no backend required)
+// @match        https://www.dubaiparksandresorts.com/*
+// @match        https://dubaiparksandresorts.com/*
 // @match        https://www.dubaiholding.com/*
 // @match        https://dubaiholding.com/*
 // @match        https://meraas.com/*
@@ -23,7 +25,7 @@
   //   Option B: Serve dist/mock-sdk-output.js from any static host / GitHub raw
   const CONFIG = {
     // GitHub Pages hosted version:
-    sdkUrl: 'https://awise-salesforce.github.io/dubai-holdings-adaptive-mock/mock-sdk-output.js',
+    sdkUrl: 'https://vortex995x.github.io/dubai-holdings-adaptive-mock/mock-sdk-output.js',
 
     // For local development: serve the file with a simple HTTP server
     // e.g. `npx serve dist` in the mock-app folder, then use:
