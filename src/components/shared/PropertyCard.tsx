@@ -18,6 +18,9 @@ export interface PropertyItem {
   bathrooms?: number | string;
   area?: number | string;
   areaUnit?: string;
+  thrillLevel?: string;
+  rideType?: string;
+  minimumHeight?: string;
 }
 
 interface PropertyCardProps {
@@ -56,27 +59,12 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onViewMore }) => 
           <div className="property-name">{property.name}</div>
           {formattedPrice && <div className="property-price">{formattedPrice}</div>}
           <div className="property-specs">
-            {property.bedrooms != null && Number(property.bedrooms) > 0 && (
-              <span className="property-spec">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/></svg>
-                {property.bedrooms} Bed
-              </span>
-            )}
-            {property.bathrooms != null && (
-              <span className="property-spec">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 12h16M4 12v6a2 2 0 002 2h12a2 2 0 002-2v-6M6 12V5a2 2 0 012-2h1"/></svg>
-                {property.bathrooms} Bath
-              </span>
-            )}
-            {property.area && (
-              <span className="property-spec">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
-                {property.area} {property.areaUnit || 'sqm'}
-              </span>
-            )}
+            {property.rideType && <span className="property-spec">{property.rideType}</span>}
+            {property.thrillLevel && <span className="property-spec">Thrill: {property.thrillLevel}</span>}
+            {property.minimumHeight && <span className="property-spec">Min: {property.minimumHeight}</span>}
           </div>
           <button type="button" className="view-more-button" onClick={handleViewMore}>
-            View more Information
+            View attraction details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </div>
