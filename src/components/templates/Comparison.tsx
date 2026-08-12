@@ -24,7 +24,7 @@ const Comparison: React.FC<{ content: StaticContentMessageTextPayload }> = ({ co
   return (
     <div className="comparison-template">
       <div className="comparison-header">
-        <h2>Property Comparison</h2>
+        <h2>Thrill Experience Comparison</h2>
       </div>
       <div className="comparison-table-wrapper">
         <table className="comparison-table">

@@ -8,14 +8,14 @@ interface PropertyDetailsProps {
 }
 
 const STATIC_AMENITIES = [
-  'Private Beach Access', 'Infinity Pool', 'Concierge Service', 'Valet Parking',
-  'Spa & Wellness', 'Fitness Centre', 'Kids Club', '24/7 Security',
+  'High-thrill experience', 'Themed environment', 'On-site dining', 'Guest services',
+  'Lockers available', 'Photo opportunities', 'First aid nearby', 'Free visitor parking',
 ];
 
 const STATIC_PAYMENT_PLAN = [
-  { phase: 'Down Payment', amount: '20%', duration: 'On signing' },
-  { phase: 'During Construction', amount: '40%', duration: 'Monthly installments' },
-  { phase: 'On Handover', amount: '40%', duration: 'Upon completion' },
+  { phase: 'Select park', amount: 'Choose experience', duration: 'In this assistant' },
+  { phase: 'Select visit date', amount: 'Choose date', duration: 'Mock availability' },
+  { phase: 'Confirmation', amount: 'Email confirmation', duration: 'Demo only' },
 ];
 
 const PropertyDetails: React.FC<PropertyDetailsProps> = ({ content, onBack }) => {
@@ -31,7 +31,7 @@ const PropertyDetails: React.FC<PropertyDetailsProps> = ({ content, onBack }) =>
         : undefined;
 
   const handleSchedule = () => {
-    window.AdaptiveWebsite.sendTextMessage(`Schedule a viewing for ${property.name}`);
+    window.AdaptiveWebsite.sendTextMessage(`Book tickets for ${property.name}`);
   };
 
   return (
@@ -60,14 +60,14 @@ const PropertyDetails: React.FC<PropertyDetailsProps> = ({ content, onBack }) =>
               </a>
             )}
             <button type="button" className="pd-btn-secondary" onClick={handleSchedule}>
-              Schedule Viewing
+              Book Tickets
             </button>
           </div>
         </div>
       </div>
 
       <section className="pd-section">
-        <h2>Amenities & Features</h2>
+        <h2>Experience Highlights</h2>
         <div className="pd-amenities">
           {STATIC_AMENITIES.map((a, i) => (
             <span key={i} className="pd-amenity-chip">{a}</span>
@@ -76,11 +76,11 @@ const PropertyDetails: React.FC<PropertyDetailsProps> = ({ content, onBack }) =>
       </section>
 
       <section className="pd-section">
-        <h2>Payment Plan</h2>
+        <h2>How the Mock Booking Works</h2>
         <div className="pd-payment-table-wrapper">
           <table className="pd-payment-table">
             <thead>
-              <tr><th>Phase</th><th>Amount</th><th>Duration</th></tr>
+                <tr><th>Step</th><th>Action</th><th>Note</th></tr>
             </thead>
             <tbody>
               {STATIC_PAYMENT_PLAN.map((row, i) => (
@@ -89,7 +89,7 @@ const PropertyDetails: React.FC<PropertyDetailsProps> = ({ content, onBack }) =>
             </tbody>
           </table>
         </div>
-        <p className="pd-note">Payment plan indicative. Contact sales for exact terms on this property.</p>
+        <p className="pd-note">Demonstration only. No payment is taken and no real ticket is issued.</p>
       </section>
     </div>
   );

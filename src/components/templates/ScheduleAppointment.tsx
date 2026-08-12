@@ -40,16 +40,16 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({ content, onBa
         {page.hero_image_url && <img src={page.hero_image_url} alt={page.page_title || ''} />}
         <div className="schedule-hero-overlay">
           <div className="schedule-hero-label">{page.hero_label || 'Book Your Experience'}</div>
-          <h1>Schedule a <em>Visit</em></h1>
+          <h1>Your Park <em>Visit</em></h1>
         </div>
       </div>
 
       <div className="schedule-content">
         <div className="schedule-info">
           <div className="info-block">
-            <h3>Find Us</h3>
+              <h3>Visit Details</h3>
             <div className="address-card">
-              <div className="address-name">{center.name || 'Sales Centre'}</div>
+                <div className="address-name">{center.name || 'Dubai Parks and Resorts'}</div>
               {address.line_1 && <span>{address.line_1}</span>}
               {address.line_2 && <span>{address.line_2}</span>}
               {address.region && <span>{address.region}</span>}
@@ -103,21 +103,21 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({ content, onBa
         <div className="schedule-map">
           <div className="map-embed">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2860!2d55.1559444!3d25.1028056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b4084d56593%3A0x2642cd85f3bd64c7!2sMeraas%20and%20Nakheel%20Sales%20Center!5e0!3m2!1sen!2sae!4v1717500000000!5m2!1sen!2sae"
+              src="https://www.google.com/maps?q=Dubai+Parks+and+Resorts&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Meraas Sales Centre Location"
+              title="Dubai Parks and Resorts location"
             />
           </div>
           <div className="map-info-card">
             <p className="map-info-name">{center.name}</p>
             <p className="map-info-address">{address.line_1}, {address.line_2}</p>
             <a
-              href="https://maps.app.goo.gl/vpLHnTWMGPVCHBuu5"
+              href={center.map_data?.directions_url || 'https://www.google.com/maps/search/?api=1&query=Dubai+Parks+and+Resorts'}
               target="_blank"
               rel="noopener noreferrer"
               className="directions-btn"
