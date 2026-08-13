@@ -46,13 +46,13 @@ const MOCK_RESPONSES: Record<string, StaticContentMessageTextPayload> = {
     "text": "Welcome to Dubai Parks and Resorts! Ready for an adrenaline-filled day? I can recommend the best thrill rides, compare experiences and create a mock ticket booking. What would you like to explore?",
     "options": [
       {
-        "name": "Show me the biggest thrills"
+        "name": "I'm visiting with teenagers"
       },
       {
-        "name": "Compare thrill experiences"
+        "name": "I'm a Real Madrid fan"
       },
       {
-        "name": "Tell me about MOTIONGATE"
+        "name": "I only have half a day"
       },
       {
         "name": "Book a park visit"
@@ -757,7 +757,53 @@ const MOCK_RESPONSES: Record<string, StaticContentMessageTextPayload> = {
   }
 };
 
+// Natural-language personalization scenarios used in the demo.
+MOCK_RESPONSES['teen thrill seekers'] = {
+  ...MOCK_RESPONSES['show me the biggest thrills'],
+  text: "Teenagers who love roller coasters should start with MOTIONGATE Dubai. I’ve prioritized three high-energy experiences with strong cinematic themes and plenty of adrenaline.",
+  options: [
+    { name: 'Compare thrill experiences' },
+    { name: 'Tell me about MOTIONGATE' },
+    { name: 'Book MOTIONGATE tickets' },
+  ],
+};
+
+MOCK_RESPONSES['real madrid fan experience'] = {
+  ...MOCK_RESPONSES['real madrid world'],
+  text: "As a Real Madrid fan, your best match is Real Madrid World — the world’s first football theme park. Start with Goal Coaster, then explore the immersive club-themed experiences around the park.",
+  options: [
+    { name: 'Goal Coaster' },
+    { name: 'Compare thrill experiences' },
+    { name: 'Book Real Madrid World tickets' },
+  ],
+};
+
+MOCK_RESPONSES['half day thrill plan'] = {
+  ...MOCK_RESPONSES['show me the biggest thrills'],
+  text: "With only half a day, focus on MOTIONGATE Dubai and prioritize these three headline experiences: John Wick: Open Contract, Now You See Me: High Roller and Dragon Gliders. Arrive early and begin with the attraction that matters most to you.",
+  options: [
+    { name: 'John Wick: Open Contract' },
+    { name: 'Compare thrill experiences' },
+    { name: 'Book MOTIONGATE tickets' },
+  ],
+};
+
 const ALIASES: Record<string, string> = {
+  "teenagers who love roller coasters": "teen thrill seekers",
+  "teens who love roller coasters": "teen thrill seekers",
+  "visiting with teenagers": "teen thrill seekers",
+  "coming with teenagers": "teen thrill seekers",
+  "teenager": "teen thrill seekers",
+  "teenagers": "teen thrill seekers",
+  "teens": "teen thrill seekers",
+  "teen": "teen thrill seekers",
+  "real madrid fan": "real madrid fan experience",
+  "madrid fan": "real madrid fan experience",
+  "football fan": "real madrid fan experience",
+  "half a day": "half day thrill plan",
+  "half day": "half day thrill plan",
+  "few hours": "half day thrill plan",
+  "limited time": "half day thrill plan",
   "thrill": "show me the biggest thrills",
   "thrills": "show me the biggest thrills",
   "adrenaline": "show me the biggest thrills",
@@ -777,6 +823,19 @@ const ALIASES: Record<string, string> = {
 const INTENT_KEYWORDS = ['compare', 'comparison', 'versus', 'vs'];
 const SCHEDULE_KEYWORDS = ['ticket', 'tickets', 'visit', 'book', 'booking', 'reserve'];
 const PAYMENT_KEYWORDS = ['price', 'prices', 'cost', 'how much'];
+const SCENARIO_ALIASES: Record<string, string> = {
+  'teenagers who love roller coasters': 'teen thrill seekers',
+  'teens who love roller coasters': 'teen thrill seekers',
+  'visiting with teenagers': 'teen thrill seekers',
+  'coming with teenagers': 'teen thrill seekers',
+  'real madrid fan': 'real madrid fan experience',
+  'madrid fan': 'real madrid fan experience',
+  'football fan': 'real madrid fan experience',
+  'half a day': 'half day thrill plan',
+  'half day': 'half day thrill plan',
+  'few hours': 'half day thrill plan',
+  'limited time': 'half day thrill plan',
+};
 
 const SCHEDULE_PROJECT_MAP: Record<string, string> = {
   "motiongate": "schedule visit motiongate",
@@ -800,6 +859,23 @@ function findResponse(userMessage: string): StaticContentMessageTextPayload {
     return MOCK_RESPONSES['confirm viewing'];
   }
 
+  // Specific visitor scenarios beat generic words such as "visit" or "rides".
+  const scenarioKeys = Object.keys(SCENARIO_ALIASES).sort((a, b) => b.length - a.length);
+  for (const scenario of scenarioKeys) {
+    if (normalised.includes(scenario)) {
+      return MOCK_RESPONSES[SCENARIO_ALIASES[scenario]];
+    }
+  }
+
+  // Comparison and pricing beat generic ticket/visit terms.
+  if (INTENT_KEYWORDS.some(k => normalised.includes(k))) {
+    return MOCK_RESPONSES['compare thrill experiences'];
+  }
+
+  if (PAYMENT_KEYWORDS.some(k => normalised.includes(k))) {
+    return MOCK_RESPONSES['tell me about ticket prices'];
+  }
+
   // Schedule intent — check if a project is also mentioned
   const isScheduleIntent = SCHEDULE_KEYWORDS.some(k => normalised.includes(k));
   if (isScheduleIntent) {
@@ -809,17 +885,7 @@ function findResponse(userMessage: string): StaticContentMessageTextPayload {
         return MOCK_RESPONSES[SCHEDULE_PROJECT_MAP[proj]];
       }
     }
-    return MOCK_RESPONSES['schedule a viewing'];
-  }
-
-  // Compare intent
-  if (INTENT_KEYWORDS.some(k => normalised.includes(k))) {
-    return MOCK_RESPONSES['compare these properties'];
-  }
-
-  // Payment intent
-  if (PAYMENT_KEYWORDS.some(k => normalised.includes(k))) {
-    return MOCK_RESPONSES['tell me about payment plans'];
+    return MOCK_RESPONSES['book a park visit'];
   }
 
   // Then check project/location aliases (longest match wins)
